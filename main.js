@@ -14,7 +14,7 @@ bot.on("ready", async () => {
 })
 
 
-bot.on('message', message => {
+bot.on('message', async message => {
 
     if (message.author.bot || message.channel.type === "dm") return;
     let messageArray = message.content.split(" ");
@@ -23,17 +23,13 @@ bot.on('message', message => {
 
     if (cmd === `${client.prefix}hello`) {
         message.reply('Hi');
-    }
-
-    else if (cmd === `${client.prefix}embed`) {
+    } else if (cmd === `${client.prefix}embed`) {
         let embed = new MessageEmbed()
             .setColor("GREEN")
             .setTitle(`@${message.author.tag}'s embed`)
             .setDescription(args.join(' '))
         message.channel.send(embed)
-    }
-
-    else if (cmd === `${client.prefix}server-info`) {
+    } else if (cmd === `${client.prefix}server-info`) {
         let embed = new MessageEmbed()
             .setColor("BLUE")
             .setTitle("Server Info")
@@ -46,9 +42,7 @@ bot.on('message', message => {
             .setTimestamp()
             .setFooter('Nice')
         message.channel.send(embed)
-    }
-
-    else if (cmd === `${client.prefix}help`) {
+    } else if (cmd === `${client.prefix}help`) {
         let embed = new MessageEmbed()
             .setAuthor("Help Has Arrived", `${message.author.avatarURL()}`)
             .setThumbnail(`${bot.user.avatarURL()}`)
@@ -56,18 +50,12 @@ bot.on('message', message => {
             embed.addField(`${commands}`, `${help[commands]}`);
         }
         message.channel.send(embed);
-    }
-
-    else if (cmd === `${client.prefix}ip`) {
+    } else if (cmd === `${client.prefix}ip`) {
         message.channel.send('Cehmemes.minehut.gg')
-    }
-
-    else if (cmd === `${client.prefix}prefix` && message.member.hasPermission("ADMINISTRATOR")) {
+    } else if (cmd === `${client.prefix}prefix` && message.member.hasPermission("ADMINISTRATOR")) {
         client.prefix = args;
         message.channel.send(`${client.prefix} is your new prefix`)
-    }
-
-    else if(cmd === `${client.prefix}hmu`) {
+    } else if (cmd === `${client.prefix}hmu`) {
         message.author.send(`I have hit you up noob`)
         const embed = new MessageEmbed()
             .setImage(`${message.author.avatarURL()}`)
@@ -75,9 +63,7 @@ bot.on('message', message => {
             .setColor('DARK_RED')
 
         message.channel.send(embed)
-    }
-
-    else if (cmd === `${client.prefix}announce`) {
+    } else if (cmd === `${client.prefix}announce`) {
         if (!message.member.hasPermission("MANAGE_MESSAGES")) {
             message.channel.send('Improper permissions')
             return;
@@ -97,9 +83,7 @@ bot.on('message', message => {
             return;
         }
         channel.send(`@everyone\n${message.author.tag}: ${announcement.join(' ')}`)
-    }
-
-    else if(cmd === `${client.prefix}user-info`) {
+    } else if (cmd === `${client.prefix}user-info`) {
         if (!message.mentions.users.first()) {
             message.channel.send('We need someone to stalk dont we')
             return;
@@ -119,13 +103,9 @@ bot.on('message', message => {
             .setTimestamp()
             .setFooter("get stalked noob")
         message.channel.send(embed)
-    }
-
-    else if (cmd === `${client.prefix}yt`) {
+    } else if (cmd === `${client.prefix}yt`) {
         message.channel.send('https://www.youtube.com/channel/UC4H2xA_EqtWZKq3zSUxIyKw?view_as=subscriber')
-    }
-
-    else if (cmd === `${client.prefix}ban`) {
+    } else if (cmd === `${client.prefix}ban`) {
         if (!message.member.hasPermission("ADMINISTRATOR")) {
             message.channel.send('Incorrect perms')
             return;
@@ -150,9 +130,7 @@ bot.on('message', message => {
             console.error(err)
         })
 
-    }
-
-    else if (cmd === `${client.prefix}kick`) {
+    } else if (cmd === `${client.prefix}kick`) {
         if (!message.member.hasPermission("ADMINISTRATOR")) {
             message.channel.send('Incorrect perms')
             return;
@@ -170,7 +148,7 @@ bot.on('message', message => {
         if (!reason) {
             reason = "None"
         }
-
+        user.send(`you have been kick from ${message.guild} for ${reason}`)
         user.kick(0, `${reason}`).then(() => {
             message.channel.send(`${user} has been kicked for: ${reason}\nby: ${message.author.tag}`)
         }).catch(err => {
@@ -179,9 +157,8 @@ bot.on('message', message => {
 
     }
 
-
 })
 
 
 
-bot.login(client.token).then(r => r);
+bot.login(client.token)
