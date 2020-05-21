@@ -125,6 +125,61 @@ bot.on('message', message => {
         message.channel.send('https://www.youtube.com/channel/UC4H2xA_EqtWZKq3zSUxIyKw?view_as=subscriber')
     }
 
+    else if (cmd === `${client.prefix}ban`) {
+        if (!message.member.hasPermission("ADMINISTRATOR")) {
+            message.channel.send('Incorrect perms')
+            return;
+        }
+        if (!message.mentions.members.first()) {
+            message.channel.send('Please mention a user')
+            return;
+        }
+        let user = message.mentions.members.first()
+        let reason = args.slice(1).join(' ')
+        if (!user.bannable) {
+            message.channel.send(`${user} cannot be banned`)
+            return;
+        }
+        if (!reason) {
+            reason = "None"
+        }
+
+        user.ban(0, `${reason}`).then(() => {
+            message.channel.send(`${user} has been banned for: ${reason}\nby: ${message.author.tag}`)
+        }).catch(err => {
+            console.error(err)
+        })
+
+    }
+
+    else if (cmd === `${client.prefix}kick`) {
+        if (!message.member.hasPermission("ADMINISTRATOR")) {
+            message.channel.send('Incorrect perms')
+            return;
+        }
+        if (!message.mentions.members.first()) {
+            message.channel.send('Please mention a user')
+            return;
+        }
+        let user = message.mentions.members.first()
+        let reason = args.slice(1).join(' ')
+        if (!user.kickable) {
+            message.channel.send(`${user} cant be kicked`)
+            return;
+        }
+        if (!reason) {
+            reason = "None"
+        }
+
+        user.kick(0, `${reason}`).then(() => {
+            message.channel.send(`${user} has been kicked for: ${reason}\nby: ${message.author.tag}`)
+        }).catch(err => {
+            console.error(err)
+        })
+
+    }
+
+
 })
 
 
