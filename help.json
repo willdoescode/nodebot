@@ -4,5 +4,6 @@
   "help": "use .help to find what it does",
   "user-info": "Gives user info",
   "src": "shows the source code for this bot",
-  "hmu": "Hits you up"
+  "hmu": "Hits you up",
+  "announce": "format: .announce {channel name} {message}"
 }

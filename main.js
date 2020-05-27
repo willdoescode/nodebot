@@ -3,7 +3,7 @@ const client = require('./login.json');
 const color = require('./colors.json');
 const help = require('./help.json');
 const { fun } = require('./funcmds.js')
-const serverInfo = require('./serverInfo.js')
+const { server } = require('./serverInfo.js')
 const { helpCmds } = require('./help.js')
 const { ad } = require('./advertise.js')
 const { adminCmds } = require('./admincmds')
@@ -32,7 +32,7 @@ bot.on('message', async message => {
         fun(message, 1, args)
 
     } else if (cmd === `${client.prefix}server-info`) {
-        serverInfo.server(message, 0, args, bot)
+        server(message, 0, args, bot)
     }
 
     else if (cmd === `${client.prefix}help`) {
@@ -53,25 +53,7 @@ bot.on('message', async message => {
     }
 
     else if (cmd === `${client.prefix}user-info`) {
-        if (!message.mentions.users.first()) {
-            message.channel.send('We need someone to stalk dont we')
-            return;
-        }
-        let user = message.mentions.users.first()
-        let embed = new MessageEmbed()
-            .setTitle(`Stalking ${user.tag}`)
-            .setAuthor(`${message.author.tag}`, `${message.author.avatarURL()}`)
-            .setThumbnail(`${user.avatarURL()}`)
-            .setColor(`RED`)
-            .addField(`Account created at:`, `${user.createdAt}`)
-            .addField(`Is Bot:`, `${user.bot}`)
-            .addField(`User Status:`, `${user.presence.status}`)
-            .addField(`Last Message:`, `${user.lastMessage}`)
-            .addField(`nickname:`, `${user.nickname}`)
-            .addField(`User id:`, `${user.id}`)
-            .setTimestamp()
-            .setFooter("get stalked noob")
-        message.channel.send(embed)
+        server(message, 1, args, bot)
     }
 
     else if (cmd === `${client.prefix}yt`) {

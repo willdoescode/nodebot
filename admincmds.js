@@ -25,3 +25,7 @@ const adminCmds = (message, cmd, args, bot) => {
         channel.send(`@everyone\n${message.author.tag}: ${announcement.join(' ')}`)
     }
 }
+
+module.exports = {
+    adminCmds
+}
