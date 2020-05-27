@@ -34,7 +34,7 @@ const fun = (message, cmd, args, bot) => {
     }
 
     else if (commands[cmd] === 'fortune') {
-        let num = Math.floor(Math.random() * 4)
+        let num = Math.ceil(Math.random() * 4)
         let embed = new MessageEmbed()
             .setAuthor(`${message.author.tag}`, `${message.author.avatarURL()}`)
             .setThumbnail(`${bot.user.avatarURL()}`)

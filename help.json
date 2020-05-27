@@ -5,5 +5,9 @@
   "user-info": "Gives user info",
   "src": "shows the source code for this bot",
   "hmu": "Hits you up",
-  "announce": "format: .announce {channel name} {message}"
+  "announce": "format: .announce {channel name} {message}",
+  "fortune": "Ask for your fortune",
+  "ban": "pretty obvious",
+  "kick": "also pretty obvious",
+  "embed": "creates embed with a message of your choice"
 }
