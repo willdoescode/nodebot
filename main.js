@@ -1,10 +1,11 @@
 const {Client, Discord, MessageAttachment, MessageEmbed} = require('discord.js');
 const client = require('./login.json');
 const color = require('./colors.json');
-const bot = new Client();
 const help = require('./help.json');
+const funcmds = require('./funcmds.js')
+const serverInfo = require('./serverInfo.js')
 
-
+const bot = new Client();
 
 bot.on("ready", async () => {
     console.log(`${bot.user.username} is online`);
@@ -22,27 +23,16 @@ bot.on('message', async message => {
     let args = messageArray.slice(1);
 
     if (cmd === `${client.prefix}hello`) {
-        message.reply('Hi');
+        funcmds.fun(message, 0, args)
+
     } else if (cmd === `${client.prefix}embed`) {
-        let embed = new MessageEmbed()
-            .setColor("GREEN")
-            .setTitle(`@${message.author.tag}'s embed`)
-            .setDescription(args.join(' '))
-        message.channel.send(embed)
+        funcmds.fun(message, 1, args)
+
     } else if (cmd === `${client.prefix}server-info`) {
-        let embed = new MessageEmbed()
-            .setColor("BLUE")
-            .setTitle("Server Info")
-            .setImage(`${bot.user.avatarURL()}`)
-            .setAuthor(`${message.guild.name} Info`, `${message.guild.iconURL()}`)
-            .addField("**Server Name:**", `${message.guild.name}`, true)
-            .addField("**Server Owner:**", `${message.guild.owner}`, true)
-            .addField("**Member Count:**", `${message.guild.memberCount}`, true)
-            .addField("**Server Creation:**", `${message.guild.createdAt}`)
-            .setTimestamp()
-            .setFooter('Nice')
-        message.channel.send(embed)
-    } else if (cmd === `${client.prefix}help`) {
+        serverInfo.server(message, 0, args, bot)
+    }
+
+    else if (cmd === `${client.prefix}help`) {
         let embed = new MessageEmbed()
             .setAuthor("Help Has Arrived", `${message.author.avatarURL()}`)
             .setThumbnail(`${bot.user.avatarURL()}`)
@@ -50,12 +40,18 @@ bot.on('message', async message => {
             embed.addField(`${commands}`, `${help[commands]}`);
         }
         message.channel.send(embed);
-    } else if (cmd === `${client.prefix}ip`) {
+    }
+
+    else if (cmd === `${client.prefix}ip`) {
         message.channel.send('Cehmemes.minehut.gg')
-    } else if (cmd === `${client.prefix}prefix` && message.member.hasPermission("ADMINISTRATOR")) {
+    }
+
+    else if (cmd === `${client.prefix}prefix` && message.member.hasPermission("ADMINISTRATOR")) {
         client.prefix = args;
         message.channel.send(`${client.prefix} is your new prefix`)
-    } else if (cmd === `${client.prefix}hmu`) {
+    }
+
+    else if (cmd === `${client.prefix}hmu`) {
         message.author.send(`I have hit you up noob`)
         const embed = new MessageEmbed()
             .setImage(`${message.author.avatarURL()}`)
@@ -63,7 +59,9 @@ bot.on('message', async message => {
             .setColor('DARK_RED')
 
         message.channel.send(embed)
-    } else if (cmd === `${client.prefix}announce`) {
+    }
+
+    else if (cmd === `${client.prefix}announce`) {
         if (!message.member.hasPermission("MANAGE_MESSAGES")) {
             message.channel.send('Improper permissions')
             return;
@@ -83,7 +81,9 @@ bot.on('message', async message => {
             return;
         }
         channel.send(`@everyone\n${message.author.tag}: ${announcement.join(' ')}`)
-    } else if (cmd === `${client.prefix}user-info`) {
+    }
+
+    else if (cmd === `${client.prefix}user-info`) {
         if (!message.mentions.users.first()) {
             message.channel.send('We need someone to stalk dont we')
             return;
@@ -103,9 +103,13 @@ bot.on('message', async message => {
             .setTimestamp()
             .setFooter("get stalked noob")
         message.channel.send(embed)
-    } else if (cmd === `${client.prefix}yt`) {
+    }
+
+    else if (cmd === `${client.prefix}yt`) {
         message.channel.send('https://www.youtube.com/channel/UC4H2xA_EqtWZKq3zSUxIyKw?view_as=subscriber')
-    } else if (cmd === `${client.prefix}ban`) {
+    }
+
+    else if (cmd === `${client.prefix}ban`) {
         if (!message.member.hasPermission("ADMINISTRATOR")) {
             message.channel.send('Incorrect perms')
             return;
@@ -130,7 +134,9 @@ bot.on('message', async message => {
             console.error(err)
         })
 
-    } else if (cmd === `${client.prefix}kick`) {
+    }
+
+    else if (cmd === `${client.prefix}kick`) {
         if (!message.member.hasPermission("ADMINISTRATOR")) {
             message.channel.send('Incorrect perms')
             return;
@@ -161,4 +167,8 @@ bot.on('message', async message => {
 
 
 
-bot.login(client.token)
+bot.login(client.token).then(r => {
+    console.log(r)
+}).catch(err => {
+    console.error(err)
+})
