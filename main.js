@@ -12,7 +12,6 @@ bot.on("ready", async () => {
     console.log(`${bot.user.username} is online`);
     await bot.user.setActivity('Hello', {type: "STREAMING", url: "https://www.youtube.com/watch?v=7JhkftWpw6Y"})
     await bot.generateInvite(["ADMINISTRATOR"]).then(r => console.log(r)).catch(err => console.error(err))
-
 })
 
 bot.on('message', async message => {
