@@ -1,12 +1,14 @@
 const {MessageEmbed} = require('discord.js')
+const fortunes = require('./fortunes.json')
 
 const commands = {
     0: "hello",
     1: "embed",
-    2: "hmu"
+    2: "hmu",
+    3: "fortune"
 }
 
-const fun = (message, cmd, args) => {
+const fun = (message, cmd, args, bot) => {
     if (commands[cmd] === "hello") {
         message.reply('hi')
     }
@@ -28,6 +30,19 @@ const fun = (message, cmd, args) => {
             .setTitle(`Hit ${message.author.tag} up`)
             .setColor('DARK_RED')
 
+        message.channel.send(embed)
+    }
+
+    else if (commands[cmd] === 'fortune') {
+        let num = Math.floor(Math.random() * 4)
+        let embed = new MessageEmbed()
+            .setAuthor(`${message.author.tag}`, `${message.author.avatarURL()}`)
+            .setThumbnail(`${bot.user.avatarURL()}`)
+            .setColor('PURPLE')
+            .addField(`Question:`, `${args.join(' ')}`)
+            .addField(`Answer:`, `${fortunes[num]}`)
+            .setTimestamp()
+            .setFooter(`Magic 8ball brought to you by willsbot`)
         message.channel.send(embed)
     }
 }

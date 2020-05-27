@@ -23,10 +23,10 @@ bot.on('message', async message => {
     let args = messageArray.slice(1);
 
     if (cmd === `${client.prefix}hello`) {
-        fun(message, 0, args)
+        fun(message, 0, args, bot)
 
     } else if (cmd === `${client.prefix}embed`) {
-        fun(message, 1, args)
+        fun(message, 1, args, bot)
 
     } else if (cmd === `${client.prefix}server-info`) {
         server(message, 0, args, bot)
@@ -42,7 +42,7 @@ bot.on('message', async message => {
 
 
     else if (cmd === `${client.prefix}hmu`) {
-        fun(message, 2, args)
+        fun(message, 2, args, bot)
     }
 
     else if (cmd === `${client.prefix}announce`) {
@@ -67,6 +67,10 @@ bot.on('message', async message => {
 
     else if (cmd === `${client.prefix}purge`) {
         adminCmds(message, 3, args, bot)
+    }
+
+    else if (cmd === `${client.prefix}fortune`) {
+        fun(message, 3, args, bot)
     }
 
 })
