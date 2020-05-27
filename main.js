@@ -1,13 +1,10 @@
 const {Client, Discord, MessageAttachment, MessageEmbed} = require('discord.js');
 const client = require('./login.json');
-const color = require('./colors.json');
-const help = require('./help.json');
 const { fun } = require('./funcmds.js')
 const { server } = require('./serverInfo.js')
 const { helpCmds } = require('./help.js')
 const { ad } = require('./advertise.js')
 const { adminCmds } = require('./admincmds')
-
 const bot = new Client();
 
 bot.on("ready", async () => {
@@ -57,61 +54,19 @@ bot.on('message', async message => {
     }
 
     else if (cmd === `${client.prefix}yt`) {
-        message.channel.send('https://www.youtube.com/channel/UC4H2xA_EqtWZKq3zSUxIyKw?view_as=subscriber')
+        ad(message, 0, bot)
     }
 
     else if (cmd === `${client.prefix}ban`) {
-        if (!message.member.hasPermission("ADMINISTRATOR")) {
-            message.channel.send('Incorrect perms')
-            return;
-        }
-        if (!message.mentions.members.first()) {
-            message.channel.send('Please mention a user')
-            return;
-        }
-        let user = message.mentions.members.first()
-        let reason = args.slice(1).join(' ')
-        if (!user.bannable) {
-            message.channel.send(`${user} cannot be banned`)
-            return;
-        }
-        if (!reason) {
-            reason = "None"
-        }
-
-        user.ban(0, `${reason}`).then(() => {
-            message.channel.send(`${user} has been banned for: ${reason}\nby: ${message.author.tag}`)
-        }).catch(err => {
-            console.error(err)
-        })
-
+        adminCmds(message, 1, args, bot)
     }
 
     else if (cmd === `${client.prefix}kick`) {
-        if (!message.member.hasPermission("ADMINISTRATOR")) {
-            message.channel.send('Incorrect perms')
-            return;
-        }
-        if (!message.mentions.members.first()) {
-            message.channel.send('Please mention a user')
-            return;
-        }
-        let user = message.mentions.members.first()
-        let reason = args.slice(1).join(' ')
-        if (!user.kickable) {
-            message.channel.send(`${user} cant be kicked`)
-            return;
-        }
-        if (!reason) {
-            reason = "None"
-        }
-        user.send(`you have been kick from ${message.guild} for ${reason}`)
-        user.kick(0, `${reason}`).then(() => {
-            message.channel.send(`${user} has been kicked for: ${reason}\nby: ${message.author.tag}`)
-        }).catch(err => {
-            console.error(err)
-        })
+        adminCmds(message, 2, args, bot)
+    }
 
+    else if (cmd === `${client.prefix}purge`) {
+        adminCmds(message, 3, args, bot)
     }
 
 })
