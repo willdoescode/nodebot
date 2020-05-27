@@ -8,8 +8,8 @@ const helpCmds = (message, bot) => {
         .setThumbnail(`${bot.user.avatarURL()}`)
         .setTimestamp()
         .setFooter('Help command by willsbot')
-    for (let commands in help) {
-        embed.addField(`${commands}`, `${help[commands]}`);
+    for (let cmds in help) {
+        embed.addField(`${cmds}`, `${help[cmds]}`);
     }
     message.channel.send(embed);
 }

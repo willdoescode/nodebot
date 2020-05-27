@@ -2,9 +2,11 @@ const {Client, Discord, MessageAttachment, MessageEmbed} = require('discord.js')
 const client = require('./login.json');
 const color = require('./colors.json');
 const help = require('./help.json');
-const funcmds = require('./funcmds.js')
+const { fun } = require('./funcmds.js')
 const serverInfo = require('./serverInfo.js')
-const { helpCmds } = require('./help')
+const { helpCmds } = require('./help.js')
+const { ad } = require('./advertise.js')
+const { adminCmds } = require('./admincmds')
 
 const bot = new Client();
 
@@ -24,10 +26,10 @@ bot.on('message', async message => {
     let args = messageArray.slice(1);
 
     if (cmd === `${client.prefix}hello`) {
-        funcmds.fun(message, 0, args)
+        fun(message, 0, args)
 
     } else if (cmd === `${client.prefix}embed`) {
-        funcmds.fun(message, 1, args)
+        fun(message, 1, args)
 
     } else if (cmd === `${client.prefix}server-info`) {
         serverInfo.server(message, 0, args, bot)
@@ -37,45 +39,17 @@ bot.on('message', async message => {
         helpCmds(message, bot)
     }
 
-    else if (cmd === `${client.prefix}ip`) {
-        message.channel.send('Cehmemes.minehut.gg')
+    else if (cmd === `${client.prefix}src`) {
+        ad(message, 1, bot)
     }
 
-    else if (cmd === `${client.prefix}prefix` && message.member.hasPermission("ADMINISTRATOR")) {
-        client.prefix = args;
-        message.channel.send(`${client.prefix} is your new prefix`)
-    }
 
     else if (cmd === `${client.prefix}hmu`) {
-        message.author.send(`I have hit you up noob`)
-        const embed = new MessageEmbed()
-            .setImage(`${message.author.avatarURL()}`)
-            .setTitle(`Hit ${message.author.tag} up`)
-            .setColor('DARK_RED')
-
-        message.channel.send(embed)
+        fun(message, 2, args)
     }
 
     else if (cmd === `${client.prefix}announce`) {
-        if (!message.member.hasPermission("MANAGE_MESSAGES")) {
-            message.channel.send('Improper permissions')
-            return;
-        }
-        if (!args) {
-            message.channel.send('You got a message?')
-            return;
-        }
-        let channel = message.mentions.channels.first()
-        if (!channel) {
-            message.channel.send('Give me a channel to send it to')
-            return;
-        }
-        let announcement = args.slice(1)
-        if (announcement === " ") {
-            message.channel.send('Give me an announcement')
-            return;
-        }
-        channel.send(`@everyone\n${message.author.tag}: ${announcement.join(' ')}`)
+        adminCmds(message, 0, args, bot)
     }
 
     else if (cmd === `${client.prefix}user-info`) {
