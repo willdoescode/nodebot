@@ -4,6 +4,7 @@ const color = require('./colors.json');
 const help = require('./help.json');
 const funcmds = require('./funcmds.js')
 const serverInfo = require('./serverInfo.js')
+const { helpCmds } = require('./help')
 
 const bot = new Client();
 
@@ -33,13 +34,7 @@ bot.on('message', async message => {
     }
 
     else if (cmd === `${client.prefix}help`) {
-        let embed = new MessageEmbed()
-            .setAuthor("Help Has Arrived", `${message.author.avatarURL()}`)
-            .setThumbnail(`${bot.user.avatarURL()}`)
-        for (let commands in help) {
-            embed.addField(`${commands}`, `${help[commands]}`);
-        }
-        message.channel.send(embed);
+        helpCmds(message, bot)
     }
 
     else if (cmd === `${client.prefix}ip`) {
