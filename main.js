@@ -78,7 +78,9 @@ bot.on('message', async message => {
 
 
 bot.login(client.token).then(r => {
-    console.log(r)
+    if (r === `${client.token}`) {
+        console.log('All good')
+    }
 }).catch(err => {
     console.error(err)
 })
