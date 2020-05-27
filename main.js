@@ -1,10 +1,11 @@
-const {Client, Discord, MessageAttachment, MessageEmbed} = require('discord.js');
-const client = require('./login.json');
+const { Client } = require('discord.js');
+const { token, prefix } = require('./login.json');
 const { fun } = require('./funcmds.js')
 const { server } = require('./serverInfo.js')
 const { helpCmds } = require('./help.js')
 const { ad } = require('./advertise.js')
 const { adminCmds } = require('./admincmds')
+
 const bot = new Client();
 
 bot.on("ready", async () => {
@@ -22,63 +23,62 @@ bot.on('message', async message => {
     let cmd = messageArray[0];
     let args = messageArray.slice(1);
 
-    if (cmd === `${client.prefix}hello`) {
+    if (cmd === `${prefix}hello`) {
         fun(message, 0, args, bot)
 
-    } else if (cmd === `${client.prefix}embed`) {
+    } else if (cmd === `${prefix}embed`) {
         fun(message, 1, args, bot)
 
-    } else if (cmd === `${client.prefix}server-info`) {
+    } else if (cmd === `${prefix}server-info`) {
         server(message, 0, args, bot)
     }
 
-    else if (cmd === `${client.prefix}help`) {
+    else if (cmd === `${prefix}help`) {
         helpCmds(message, bot)
     }
 
-    else if (cmd === `${client.prefix}src`) {
+    else if (cmd === `${prefix}src`) {
         ad(message, 1, bot)
     }
 
 
-    else if (cmd === `${client.prefix}hmu`) {
+    else if (cmd === `${prefix}hmu`) {
         fun(message, 2, args, bot)
     }
 
-    else if (cmd === `${client.prefix}announce`) {
+    else if (cmd === `${prefix}announce`) {
         adminCmds(message, 0, args, bot)
     }
 
-    else if (cmd === `${client.prefix}user-info`) {
+    else if (cmd === `${prefix}user-info`) {
         server(message, 1, args, bot)
     }
 
-    else if (cmd === `${client.prefix}yt`) {
+    else if (cmd === `${prefix}yt`) {
         ad(message, 0, bot)
     }
 
-    else if (cmd === `${client.prefix}ban`) {
+    else if (cmd === `${prefix}ban`) {
         adminCmds(message, 1, args, bot)
     }
 
-    else if (cmd === `${client.prefix}kick`) {
+    else if (cmd === `${prefix}kick`) {
         adminCmds(message, 2, args, bot)
     }
 
-    else if (cmd === `${client.prefix}purge`) {
+    else if (cmd === `${prefix}purge`) {
         adminCmds(message, 3, args, bot)
     }
 
-    else if (cmd === `${client.prefix}fortune`) {
+    else if (cmd === `${prefix}fortune`) {
         fun(message, 3, args, bot)
     }
 
 })
 
 
-
-bot.login(client.token).then(r => {
-    if (r === `${client.token}`) {
+bot.login(token).then(r => {
+    if (r === `${token}`) {
         console.log('All good')
     }
 }).catch(err => {

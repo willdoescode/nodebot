@@ -1,6 +1,4 @@
 const { MessageEmbed } = require('discord.js')
-const fs = require('fs')
-
 
 
 const commands = {
@@ -132,10 +130,3 @@ const adminCmds = (message, cmd, args, bot) => {
 module.exports = {
     adminCmds
 }
-
-// //messages: MessageManager {
-//     cacheType: [Function: LimitedCollection],
-//     cache: LimitedCollection(1) [Map] {
-//         '715043376168173630' => [Message],
-//             maxSize: 200
-//     },
