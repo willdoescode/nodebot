@@ -1,6 +1,5 @@
 const { MessageEmbed } = require('discord.js')
 
-
 const commands = {
     0: "announce",
     1: "ban",

@@ -4,7 +4,7 @@ const { fun } = require('./funcmds.js')
 const { server } = require('./serverInfo.js')
 const { helpCmds } = require('./help.js')
 const { ad } = require('./advertise.js')
-const { adminCmds } = require('./admincmds')
+const { adminCmds } = require('./admincmds.js')
 
 const bot = new Client();
 
@@ -15,7 +15,6 @@ bot.on("ready", async () => {
 
 })
 
-
 bot.on('message', async message => {
 
     if (message.author.bot || message.channel.type === "dm") return;
@@ -25,11 +24,13 @@ bot.on('message', async message => {
 
     if (cmd === `${prefix}hello`) {
         fun(message, 0, args, bot)
+    }
 
-    } else if (cmd === `${prefix}embed`) {
+    else if (cmd === `${prefix}embed`) {
         fun(message, 1, args, bot)
+    }
 
-    } else if (cmd === `${prefix}server-info`) {
+    else if (cmd === `${prefix}server-info`) {
         server(message, 0, args, bot)
     }
 
@@ -40,7 +41,6 @@ bot.on('message', async message => {
     else if (cmd === `${prefix}src`) {
         ad(message, 1, bot)
     }
-
 
     else if (cmd === `${prefix}hmu`) {
         fun(message, 2, args, bot)
@@ -73,9 +73,7 @@ bot.on('message', async message => {
     else if (cmd === `${prefix}fortune`) {
         fun(message, 3, args, bot)
     }
-
 })
-
 
 bot.login(token).then(r => {
     if (r === `${token}`) {
