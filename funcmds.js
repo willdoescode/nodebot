@@ -1,4 +1,4 @@
-const {MessageEmbed} = require('discord.js')
+const { MessageEmbed } = require('discord.js')
 const fortunes = require('./fortunes.json')
 
 const commands = {
