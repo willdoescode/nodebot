@@ -56,7 +56,7 @@ const fun = (message, cmd, args, bot) => {
     }
 
     else if (commands[cmd] === 'scary') {
-        let num = Math.floor(Math.random() * 3)
+        let num = Math.floor(Math.random() * 4)
         let image = scaryImages[num]
         message.channel.send('Hello There', { files: [`${image}`] }).then(msg => {
             msg.delete({ timeout: 1500 }).then(r => {
