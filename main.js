@@ -15,7 +15,6 @@ bot.on("ready", async () => {
 })
 
 bot.on('message', async message => {
-
     if (message.author.bot || message.channel.type === "dm") return;
     let messageArray = message.content.split(" ");
     let cmd = messageArray[0];
@@ -29,35 +28,22 @@ bot.on('message', async message => {
         fun(message, 1, args, bot)
     }
 
-    else if (cmd === `${prefix}server-info`) {
-        server(message, 0, args, bot)
-    }
-
-    else if (cmd === `${prefix}help`) {
-        helpCmds(message, bot)
-    }
-
-    else if (cmd === `${prefix}src`) {
-        ad(message, 1, bot)
-    }
-
     else if (cmd === `${prefix}hmu`) {
         fun(message, 2, args, bot)
     }
 
-    else if (cmd === `${prefix}announce`) {
-        adminCmds(message, 0, args, bot)
+    else if (cmd === `${prefix}fortune`) {
+        fun(message, 3, args, bot)
     }
+})
 
-    else if (cmd === `${prefix}user-info`) {
-        server(message, 1, args, bot)
-    }
+bot.on('message', async message => {
+    if (message.author.bot || message.channel.type === "dm") return;
+    let messageArray = message.content.split(" ");
+    let cmd = messageArray[0];
+    let args = messageArray.slice(1);
 
-    else if (cmd === `${prefix}yt`) {
-        ad(message, 0, bot)
-    }
-
-    else if (cmd === `${prefix}ban`) {
+    if (cmd === `${prefix}ban`) {
         adminCmds(message, 1, args, bot)
     }
 
@@ -69,8 +55,38 @@ bot.on('message', async message => {
         adminCmds(message, 3, args, bot)
     }
 
-    else if (cmd === `${prefix}fortune`) {
-        fun(message, 3, args, bot)
+    else if (cmd === `${prefix}announce`) {
+        adminCmds(message, 0, args, bot)
+    }
+})
+
+
+
+bot.on('message', async message => {
+
+    if (message.author.bot || message.channel.type === "dm") return;
+    let messageArray = message.content.split(" ");
+    let cmd = messageArray[0];
+    let args = messageArray.slice(1);
+
+    if (cmd === `${prefix}server-info`) {
+        server(message, 0, args, bot)
+    }
+
+    else if (cmd === `${prefix}user-info`) {
+        server(message, 1, args, bot)
+    }
+
+    else if (cmd === `${prefix}help`) {
+        helpCmds(message, bot)
+    }
+
+    else if (cmd === `${prefix}src`) {
+        ad(message, 1, bot)
+    }
+
+    else if (cmd === `${prefix}yt`) {
+        ad(message, 0, bot)
     }
 })
 
