@@ -9,5 +9,9 @@
   "fortune": "Ask for your fortune",
   "ban": "pretty obvious",
   "kick": "also pretty obvious",
-  "embed": "creates embed with a message of your choice"
+  "embed": "creates embed with a message of your choice",
+  "scary": "is scary",
+  "kill": "kills a user of your choice",
+  "purge": "deletes an amount of messages",
+  "hello": "says hi"
 }
