@@ -74,6 +74,13 @@ const fun = (message, cmd, args, bot) => {
         let user = message.mentions.members.first()
         message.channel.send(`Will fell on ${user} and killed them`, { files: ['./dyingwill.jpg'] })
     }
+
+    else if (commands[cmd] === 'art') {
+        message.attachments.forEach(a => {
+
+        })
+    }
+
 }
 
 module.exports = {
