@@ -120,7 +120,11 @@ const adminCmds = (message, cmd, args, bot) => {
                 .addField(`Target Amount to delete: ${args[0]}`, `Amount deleted: ${messages.size}`)
                 .setTimestamp()
                 .setFooter(`purge brought to you by wills bot`)
-            message.channel.send(embed)
+            message.channel.send(embed).then(msg => {
+                msg.delete({timeout: 4000}).then(r => {
+                    let i = r
+                })
+            })
         })
 
     }

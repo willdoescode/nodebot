@@ -35,6 +35,14 @@ bot.on('message', async message => {
     else if (cmd === `${prefix}fortune`) {
         fun(message, 3, args, bot)
     }
+
+    else if (cmd === `${prefix}scary`) {
+        fun(message, 4, args, bot)
+    }
+
+    else if (cmd === `${prefix}kill`) {
+        fun(message, 5, args, bot)
+    }
 })
 
 bot.on('message', async message => {

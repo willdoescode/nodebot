@@ -5,7 +5,16 @@ const commands = {
     0: "hello",
     1: "embed",
     2: "hmu",
-    3: "fortune"
+    3: "fortune",
+    4: "scary",
+    5: "kill"
+}
+
+const scaryImages = {
+    0: "./scary1.jpg",
+    1: "./scary2.jpg",
+    2: "./scary3.jpg",
+    3: "./scarywill.jpg"
 }
 
 const fun = (message, cmd, args, bot) => {
@@ -44,6 +53,26 @@ const fun = (message, cmd, args, bot) => {
             .setTimestamp()
             .setFooter(`Magic 8ball brought to you by willsbot`)
         message.channel.send(embed)
+    }
+
+    else if (commands[cmd] === 'scary') {
+        let num = Math.floor(Math.random() * 3)
+        let image = scaryImages[num]
+        message.channel.send('Hello There', { files: [`${image}`] }).then(msg => {
+            msg.delete({ timeout: 1500 }).then(r => {
+                let i = r
+                message.delete()
+            })
+        })
+    }
+
+    else if (commands[cmd] === 'kill') {
+        if (!message.mentions.members.first()) {
+            message.reply('I need someone to kill')
+            return;
+        }
+        let user = message.mentions.members.first()
+        message.channel.send(`Will fell on ${user} and killed them`, { files: ['./dyingwill.jpg'] })
     }
 }
 
