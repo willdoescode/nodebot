@@ -43,6 +43,11 @@ bot.on('message', async message => {
     else if (cmd === `${prefix}kill`) {
         fun(message, 5, args, bot)
     }
+
+    else if (cmd === `${prefix}test`) {
+        fun(message, 6, args, bot)
+    }
+
 })
 
 bot.on('message', async message => {
