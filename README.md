@@ -1,6 +1,19 @@
-***My attempt at a discord bot in node js***
+# Wills NodeJs Discord Bot
 
-add this bot to your server (although it wont be up on a aws server for a while):
-> https://discordapp.com/api/oauth2/authorize?client_id=678414181216682021&permissions=8&scope=bot
+## What makes up this project?
 
-**Thank *you* for looking at my code**
+- [x] Discord.js
+- [x] Canvas
+- [x] https
+
+## Donate
+[![Donate](https://img.shields.io/badge/$-support-ff69b4.svg?style=flat)](https://paypal.me/williamdlane) 
+
+## Follow me
+> Twitter [@willdoescode](https://twitter.com/willdoescode)
+```javascript
+if(!you.followme) {
+    you.clickTheLinkAbove()
+    you.followme()
+}
+```

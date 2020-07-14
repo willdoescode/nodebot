@@ -2,7 +2,7 @@ const { MessageEmbed } = require('discord.js')
 const https = require('https')
 const fs = require('fs')
 const { createCanvas, loadImage } = require('canvas')
-const fortunes = require('./fortunes.json')
+const fortunes = require('../utils/fortunes.json')
 
 const commands = {
     0: "hello",

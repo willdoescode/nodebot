@@ -1,4 +1,4 @@
-const help = require('./help.json');
+const help = require('../utils/help.json');
 const { MessageEmbed } = require('discord.js');
 
 const helpCmds = (message, bot) => {

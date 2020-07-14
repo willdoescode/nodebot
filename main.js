@@ -1,10 +1,10 @@
 const { Client } = require('discord.js');
 const { token, prefix } = require('./login.json');
-const { fun } = require('./funcmds.js')
-const { server } = require('./serverInfo.js')
-const { helpCmds } = require('./help.js')
-const { ad } = require('./advertise.js')
-const { adminCmds } = require('./admincmds.js')
+const { fun } = require('./cogs/funcmds.js')
+const { server } = require('./cogs/serverInfo.js')
+const { helpCmds } = require('./cogs/help.js')
+const { ad } = require('./cogs/advertise.js')
+const { adminCmds } = require('./cogs/admincmds.js')
 
 const bot = new Client();
 
